@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Olhar 360 Comunicação Visual</title>
+  
+  <!-- Google Fonts Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome (Grátis) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pO5smX0V+WxjKjq3vtHyrT1x6z1Fi6u0mYgW0KbSxjZBx+cH3Y+Ox4aDfT8G82pP7rX5d5B5vM6A46vJHYJV9A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    header h1 {
+      color: #0a3d62; /* azul escuro */
+      font-size: 28px;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+    }
+
+    nav a {
+      margin-left: 30px;
+      font-weight: 600;
+      color: #444;
+      transition: color 0.3s ease;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #1e90ff;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #1e90ff;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      background-color: #0a3d62;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 120px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      max-width: 720px;
+      margin: 0 auto 20px auto;
+      font-weight: 900;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 620px;
+      margin: 0 auto 40px auto;
+      font-weight: 500;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #0a3d62;
+      padding: 16px 38px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #e1e1e1;
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    /* SEÇÕES */
+    section {
+      max-width: 1100px;
+      margin: 70px auto;
+      padding: 0 20px;
+    }
+
+    h3 {
+      font-size: 2.6rem;
+      margin-bottom: 50px;
+      text-align: center;
+      color: #222;
+      letter-spacing: 0.03em;
+    }
+
+    /* SERVIÇOS */
+    .servicos-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .servico {
+      background: #fff;
+      padding: 35px 25px;
+      flex: 1 1 320px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+      text-align: center;
+    }
+
+    .servico:hover,
+    .servico:focus-within {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+    }
+
+    .servico h4 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #0a3d62;
+      letter-spacing: 0.02em;
+    }
+
+    .servico p {
+      color: #555;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    /* PORTFÓLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 28px;
+    }
+
+    .portfolio-grid img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .portfolio-grid img:hover,
+    .portfolio-grid img:focus {
+      transform: scale(1.06);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      outline: none;
+    }
+
+    /* CONTATO */
+    #contato {
+      background-color: #eaeaea;
+      border-radius: 14px;
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    #contato p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: white;
+      padding: 16px 38px;
+      font-weight: 700;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 50px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .btn-whatsapp:hover,
+    .btn-whatsapp:focus {
+      background-color: #1ebe57;
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    /* FORMULÁRIO */
+    form {
+      background: white;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 40px 35px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    form h4 {
+      margin-bottom: 30px;
+      color: #0a3d62;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 15px 18px;
+      margin-bottom: 28px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      resize: vertical;
+      font-family: 'Poppins', Arial, sans-serif;
+      font-weight: 400;
+      color: #222;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #0a3d62;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      background-color: #0a3d62;
+      color: white;
+      padding: 16px 38px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      width: 100%;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background-color: #064070;
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    /* INSTAGRAM */
+    .instagram-section {
+      background: white;
+      max-width: 600px;
+      margin: 70px auto 50px auto;
+      padding: 40px 35px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .instagram-section h4 {
+      margin-bottom: 25px;
+      color: #e4405f;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .instagram-section a {
+      background-color: #e4405f;
+      color: white;
+      padding: 16px 38px;
+      font-weight: 700;
+      border-radius: 12px;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+    }
+
+    .instagram-section a:hover,
+    .instagram-section a:focus {
+      background-color: #b52b44;
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #0a3d62;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.95rem;
+      margin-top: 40px;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 700px) {
+      .servicos-container {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .hero h2 {
+        font-size: 2.4rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Olhar 360</h1>
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero" role="banner" aria-label="Seção principal do site Olhar 360">
+    <h2>Transformamos Ideias em Imagem</h2>
+    <p>Adesivos, fachadas, letras caixa e muito mais no Litoral Norte de SP</p>
+    <a href="#contato" class="btn-primary" role="button">Faça um orçamento</a>
+  </section>
+
+  <section id="servicos" aria-labelledby="titulo-servicos">
+    <h3 id="titulo-servicos">Nossos Serviços</h3>
+    <div class="servicos-container">
+      <div class="servico" tabindex="0" aria-describedby="desc-adesivos">
+        <h4>Adesivos Personalizados <i class="fa-solid fa-sticky-note" aria-hidden="true"></i></h4>
+        <p id="desc-adesivos">Parede, vidro, veículos e decoração.</p>
+      </div>
+      <div class="servico" tabindex="0" aria-describedby="desc-letras">
+        <h4>Letras Caixa <i class="fa-solid fa-lightbulb" aria-hidden="true"></i></h4>
+        <p id="desc-letras">Com LED, PVC ou inox, sob medida.</p>
+      </div>
+      <div class="servico" tabindex="0" aria-describedby="desc-fachadas">
+        <h4>Fachadas <i class="fa-solid fa-building" aria-hidden="true"></i></h4>
+        <p id="desc-fachadas">Projetos completos para seu comércio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" aria-labelledby="titulo-portfolio">
+    <h3 id="titulo-portfolio">Portfólio</h3>
+    <div class="portfolio-grid">
+      <img src="https://via.placeholder.com/400x300?text=Projeto+1" alt="Projeto 1 Olhar 360" tabindex="0" />
+      <img src="https://via.placeholder.com/400x300?text=Projeto+2" alt="Projeto 2 Olhar 360" tabindex="0" />
+      <img src="https://via.placeholder.com/400x300?text=Projeto+3" alt="Projeto 3 Olhar 360" tabindex="0" />
+      <img src="https://via.placeholder.com/400x300?text=Projeto+4" alt="Projeto 4 Olhar 360" tabindex="0" />
+      <img src="https://via.placeholder.com/400x300?text=Projeto+5" alt="Projeto 5 Olhar 360" tabindex="0" />
+      <img src="https://via.placeholder.com/400x300?text=Projeto+6" alt="Projeto 6 Olhar 360" tabindex="0" />
+    </div>
+  </section>
+
+  <section id="contato" aria-labelledby="titulo-contato">
+    <h3 id="titulo-contato">Fale Conosco</h3>
+    <p>📞 (12) 99749-5923 | ✉️ adicto.xavier@gmail.com</p>
+    <a href="https://wa.me/5512997495923" target="_blank" rel="noopener" class="btn-whatsapp" role="button" aria-label="Chamar no WhatsApp">
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+    </a>
+
+    <form action="https://formspree.io/f/seu_form_id" method="POST" aria-label="Formulário para orçamento">
+      <h4>Peça seu Orçamento</h4>
+
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" required />
+
+      <label for="mensagem">Detalhes do Serviço</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+      <button type="submit" aria-label="Enviar formulário de orçamento">Enviar</button>
+    </form>
+  </section>
+
+  <section class="instagram-section" aria-label="Instagram Olhar 360">
+    <h4>Siga-nos no Instagram</h4>
+    <a href="https://instagram.com/seu_usuario" target="_blank" rel="noopener" aria-label="Abrir Instagram Olhar 360">@seu_usuario</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Olhar 360 Comunicação Visual. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
